@@ -27,27 +27,5 @@ class Product {
     );
   }
 
-  get imageUrl => null;
-}
-class Productcat {
-  final int id;
-  final String title;
-  final String imageUrl;
-  final double price;
-
-  Productcat({
-    required this.id,
-    required this.title,
-    required this.imageUrl,
-    required this.price,
-  });
-
-  factory Productcat.fromJson(Map<String, dynamic> json) {
-    return Productcat(
-      id: json['id'],
-      title: json['title'],
-      imageUrl: json['image'],
-      price: json['price'].toDouble(),
-    );
-  }
+  
 }

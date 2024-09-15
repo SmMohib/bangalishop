@@ -37,9 +37,8 @@ class _ProductsGridPageState extends State<ProductsGridPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Products'),
-      ),
+     
+     
       body: FutureBuilder<List<Product>>(
         future: futureProducts,
         builder: (context, snapshot) {

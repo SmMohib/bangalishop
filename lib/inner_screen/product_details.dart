@@ -5,8 +5,9 @@ import '../model/products.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final Product product;
+  
 
-  ProductDetailPage({required this.product});
+  const ProductDetailPage({required this.product});
 
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
@@ -57,7 +58,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         title: Text(widget.product.title),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             onPressed: () {
               // Navigate to the cart page
             },
@@ -65,18 +66,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
               child: Image.network(widget.product.image, height: 300, fit: BoxFit.cover),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(widget.product.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                Text(widget.product.title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 IconButton(
                   icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
                   color: isFavorite ? Colors.red : Colors.grey,
@@ -84,28 +85,28 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 ),
               ],
             ),
-            SizedBox(height: 8),
-            Text('\$${widget.product.price.toString()}', style: TextStyle(fontSize: 20, color: Colors.green)),
-            SizedBox(height: 16),
-            Text('Product Description', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
+            Text('\$${widget.product.price.toString()}', style: const TextStyle(fontSize: 20, color: Colors.green)),
+            const SizedBox(height: 16),
+            const Text('Product Description', style: TextStyle(fontSize: 18)),
+            const SizedBox(height: 8),
             Text(
               widget.product.description,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton(
                     onPressed: _buyNow,
-                    child: Text('Buy Now'),
+                    child: const Text('Buy Now'),
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 IconButton(
-                  icon: Icon(Icons.shopping_cart),
+                  icon: const Icon(Icons.shopping_cart),
                   onPressed: _addToCart,
                   tooltip: 'Add to Cart',
                 ),

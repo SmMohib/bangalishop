@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bangalishop/admin/screens/updateproduct.dart';
+import 'package:bangalishop/screen/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -36,7 +37,10 @@ class _ProductsGridPageState extends State<ProductsGridPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => AddProductPage(),));}, icon: const Icon(Icons.add))],
+        actions: [
+           IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));}, icon: const Icon(Icons.person))
+          ,
+          IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => AddProductPage(),));}, icon: const Icon(Icons.add))],
         title: const Text('Products'),
       ),
       body: FutureBuilder<List<Product>>(
@@ -122,60 +126,62 @@ class ProductDetailPage extends StatelessWidget {
         title: Text(product.title),
         
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.network(product.image),
-            const SizedBox(height: 16),
-            Text(product.title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            Text('\$${product.price}', style: const TextStyle(fontSize: 20, color: Colors.green)),
-            const SizedBox(height: 8),
-            Text(product.description),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => UpdateProductPage(product: product),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(product.image),
+              const SizedBox(height: 16),
+              Text(product.title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              Text('\$${product.price}', style: const TextStyle(fontSize: 20, color: Colors.green)),
+              const SizedBox(height: 8),
+              Text(product.description),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UpdateProductPage(product: product),
+                        ),
+                      );
+                    },
+                    child: const Text('Update Product'),
+                  ), IconButton(
+              icon: const Icon(Icons.delete,color: Colors.red,),
+              onPressed: () async {
+                final confirm = await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Delete Product'),
+                    content: const Text('Are you sure you want to delete this product?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, false),
+                        child: const Text('Cancel'),
                       ),
-                    );
-                  },
-                  child: const Text('Update Product'),
-                ), IconButton(
-            icon: const Icon(Icons.delete,color: Colors.red,),
-            onPressed: () async {
-              final confirm = await showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Delete Product'),
-                  content: const Text('Are you sure you want to delete this product?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, false),
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, true),
-                      child: const Text('Delete'),
-                    ),
-                  ],
-                ),
-              );
-
-              if (confirm == true) {
-                await deleteProduct(product.id, context);
-              }
-            },
-          ),
-              ],
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, true),
+                        child: const Text('Delete'),
+                      ),
+                    ],
+                  ),
+                );
+        
+                if (confirm == true) {
+                  await deleteProduct(product.id, context);
+                }
+              },
             ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
