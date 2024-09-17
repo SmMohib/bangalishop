@@ -65,6 +65,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           ),
         ],
       ),
+    //  bottomNavigationBar: BottomNavigationBar(items: ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -98,6 +99,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             Row(
               children: [
                 Expanded(
+                  flex: 8,
                   child: ElevatedButton(
                     onPressed: _buyNow,
                     child: const Text('Buy Now'),
@@ -105,10 +107,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                IconButton(
-                  icon: const Icon(Icons.shopping_cart),
-                  onPressed: _addToCart,
-                  tooltip: 'Add to Cart',
+                Expanded(
+                  flex: 2,
+                  child: IconButton(
+                    icon: const Icon(Icons.shopping_cart),
+                    onPressed: _addToCart,
+                    tooltip: 'Add to Cart',
+                  ),
                 ),
               ],
             ),

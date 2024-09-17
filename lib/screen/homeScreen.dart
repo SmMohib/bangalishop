@@ -26,7 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(height: 50,width: double.infinity,color: Colors.cyan[50], child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Search products',),Icon(Icons.search)],),),
+                    child: Container(height: 50,width: double.infinity,color: Colors.cyan[50], child: 
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: 
+                    [Text('Search products',),Icon(Icons.search)],),),
                   ),
                 ),
               ),
